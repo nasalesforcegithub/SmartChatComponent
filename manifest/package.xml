@@ -13,11 +13,13 @@
 	</types>
 	<types>
 		<members>CustomAgentChat</members>
+        <members>CustomLiveAgentChatBubble</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
 		<members>Case</members>
 		<members>Chat_Event__c</members>
+        <members>Chat_Event_Entity__c</members>
 		<members>Contract</members>
 		<members>LiveChatTranscript</members>
 		<name>CustomObject</name>

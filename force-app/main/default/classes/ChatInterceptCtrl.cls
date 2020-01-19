@@ -16,18 +16,32 @@ public class ChatInterceptCtrl {
         } else {
             sentiment = getChatSentiment(chatString, spokenBy);
         }
+        einsteinplay.Einstein_PredictionResult prediction;
+        if (spokenBy == 'Customer'){
+            prediction = getChatNER(chatString, spokenBy);
+        }
         Chat_Event__c chatEvent = insertChatEvent(chatId, chatString, spokenBy, translation, intent, sentiment, currentSentiment, currentPosition);
+        
+        List<Chat_Event_Entity__c> entities = insertChatEventEntities(chatEvent.Id, prediction);
+        
+        chatEvent = [
+            SELECT 	Name, Event_Time__c , Type__c, Transcript__c, Spoken_By__c, 
+            		Translation__c, Intent__c, Aggregated_Sentiment__c, Sentiment__c,
+            		(SELECT Type__c, Value__c, Confidence__c FROM Chat_Event_Entities__r) 
+            FROM 	Chat_Event__c 
+            WHERE 	ID =:chatEvent.Id
+        ];
         
         //Placeholder for doing NER on chatString
         
         return chatEvent;
     }
-
+    
     @AuraEnabled
     public static List<Chat_Event__c> getPastChatEvents(String chatId){
-        System.debug('Chat Id is ' + voiceCallId);
+        System.debug('Chat Id is ' + chatId);
         return [SELECT Name, Event_Time__c , Type__c, Transcript__c, Spoken_By__c, Translation__c, Intent__c, Aggregated_Sentiment__c, Sentiment__c FROM Chat_Event__c WHERE Chat_Transcript__c  =: chatId ORDER BY Event_Time__c ASC];
-    }    
+    }
     
     @AuraEnabled
     public static String getChatTranslation(String chatString, String toLanguage, String spokenBy){
@@ -109,6 +123,21 @@ public class ChatInterceptCtrl {
         insert chatEvent;
         return chatEvent;
     }
+    @AuraEnabled
+    public static List<Chat_Event_Entity__c> insertChatEventEntities(String eventId, einsteinplay.Einstein_PredictionResult prediction){
+        List<Chat_Event_Entity__c> entityList = new List<Chat_Event_Entity__c>();
+        for(einsteinplay.Einstein_Probability probability : prediction.probabilities){
+            Chat_Event_Entity__c eventEntity = new Chat_Event_Entity__c();
+            eventEntity.Type__c = probability.label;
+            eventEntity.Value__c = probability.token;
+            eventEntity.Confidence__c = probability.probability;
+            eventEntity.Chat_Event__c = eventId;
+            entityList.add(eventEntity);
+        }
+        insert entityList;
+        return entityList;
+    }
+    
     
     @AuraEnabled
     public static list<Chat_Event__c> fetchChatEventList(String chatId){
