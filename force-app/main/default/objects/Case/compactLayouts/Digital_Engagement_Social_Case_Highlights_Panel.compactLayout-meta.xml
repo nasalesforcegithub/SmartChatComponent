@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Digital_Engagement_Social_Case_Highlights_Panel</fullName>
+    <fields>Subject</fields>
+    <fields>Origin</fields>
+    <fields>Channel__c</fields>
+    <label>Digital Engagement - Social Case Highlights Panel</label>
+</CompactLayout>

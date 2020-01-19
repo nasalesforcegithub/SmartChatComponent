@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Speech</fullName>
+                <default>false</default>
+                <label>Speech</label>
+            </value>
+            <value>
+                <fullName>Image</fullName>
+                <default>false</default>
+                <label>Image</label>
+            </value>
+            <value>
+                <fullName>Calendar</fullName>
+                <default>false</default>
+                <label>Calendar</label>
+            </value>
+            <value>
+                <fullName>Map</fullName>
+                <default>false</default>
+                <label>Map</label>
+            </value>
+            <value>
+                <fullName>Breakpoint</fullName>
+                <default>false</default>
+                <label>Breakpoint</label>
+            </value>
+            <value>
+                <fullName>Money</fullName>
+                <default>false</default>
+                <label>Money</label>
+            </value>
+            <value>
+                <fullName>Lead</fullName>
+                <default>false</default>
+                <label>Lead</label>
+            </value>
+            <value>
+                <fullName>Einstein Insight</fullName>
+                <default>false</default>
+                <label>Einstein Insight</label>
+            </value>
+            <value>
+                <fullName>End Chat</fullName>
+                <default>false</default>
+                <label>End Chat</label>
+            </value>
+            <value>
+                <fullName>Translation</fullName>
+                <default>false</default>
+                <label>Translation</label>
+            </value>
+            <value>
+                <fullName>Intent</fullName>
+                <default>false</default>
+                <label>Intent</label>
+            </value>
+            <value>
+                <fullName>Sentiment</fullName>
+                <default>false</default>
+                <label>Sentiment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

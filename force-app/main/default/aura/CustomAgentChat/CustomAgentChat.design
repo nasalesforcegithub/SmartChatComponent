@@ -1,0 +1,11 @@
+<design:component label="Einstein Chat">
+    <design:attribute name="einstein_translation" label="Translate Chat" datasource="Yes,No" default="None" description="Select to enable Einstein Language Translation"/> 
+    <design:attribute name="customer_language" label="Customer Language" datasource="apex://EPTranslationLanguagePickList" default="None" description="Define the Language that the Customer will be speaking"/>
+    <design:attribute name="agent_language" label="Agent Language" datasource="apex://EPTranslationLanguagePickList" default="None" description="Define the Language that the Agent will be speaking"/>
+    <design:attribute name="einstein_intent" label="Run Intent Analysis" datasource="Yes,No" default="None" description="Select to enable Einstein Language Intent Detection on Customer Utterances"/> 
+    <design:attribute name="einstein_intent_model" label="Einstein Intent Model ID" default="None" description="Define the Language Model ID used for running Intent Analysis"/>
+    <design:attribute name="einstein_NER" label="Run Entity Recognition Analysis" datasource="Yes,No" default="None" description="Select to use Einstein to detect keywords in Customer Utterances"/> 
+    <design:attribute name="einstein_sentiment" label="Run Sentiment Analysis" datasource="Yes,No" default="None" description="Select to use Einstein Language to analyse the Sentiment of the Customers conversation"/> 
+    <design:attribute name="negative_sentiment_level" label="Negative Sentiment Level" default="-3" placeholder="-3" description="Define the aggregate Sentiment below which a Negative Sentiment warning will be fired. Default value is -3"/> 
+    <design:attribute name="component_height" label="Chat Window Height" default="500px" placeholder="500px" description="Define the height of the Chat window in pixels (px)"/> 
+</design:component>

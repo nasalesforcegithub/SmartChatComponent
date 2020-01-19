@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cost__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case ( Origin, &#39;Phone&#39;, 3.5, &#39;Chat&#39;, 2, &#39;Email&#39;, 2, &#39;Website&#39;, 1.5, &#39;Portal&#39;, 1.5, &#39;Chatter Answer&#39;, 1.2, 1.75)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Estimated Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

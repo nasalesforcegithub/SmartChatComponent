@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Satisfaction_Survey</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Customer Satisfaction Survey</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/flow/Customer_Satisfaction_Flow?vaCaseId={!Case.Id}&amp;retURL={!Case.Link}</url>
+</WebLink>

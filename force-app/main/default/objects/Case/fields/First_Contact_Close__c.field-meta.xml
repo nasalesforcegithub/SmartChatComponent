@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>First_Contact_Close__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Used to mark cases that are closed on first contact, without requiring additional engagement with the customer.  Off by default.  Driven by workflow rule.</description>
+    <externalId>false</externalId>
+    <label>First Contact Close</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,217 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global" controller="ChatInterceptCtrl">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>    
+    
+    <!-- Local Variables -->
+    <aura:attribute name="caseEvents" type="Chat_Event__c[]"/>
+    <aura:attribute name="chat_box_value" type="String"/>
+    <aura:attribute name="aggregated_sentiment" type="Integer" default="0"/>
+    <aura:attribute name="current_intent" type="String" />
+    <aura:attribute name="message_number" type="Integer" default="0"/>
+    
+    <!-- Parameters -->
+    <aura:attribute name="einstein_translation" type="String" default="Yes"/>
+    <aura:attribute name="customer_language" type="String" default="fr"/>
+    <aura:attribute name="agent_language" type="String" default="en"/>
+    <aura:attribute name="einstein_intent" type="String" default="Yes"/>
+    <aura:attribute name="einstein_intent_model" type="String"/>    
+    <aura:attribute name="einstein_sentiment" type="String" default="Yes"/>
+    <aura:attribute name="negative_sentiment_level" type="Integer" default="-3" />    
+    <aura:attribute name="einstein_NER" type="String" default="Yes"/>
+    <aura:attribute name="component_height" type="String" default="500px"/>
+    
+    <!-- Events -->
+    <lightning:empApi aura:id="empApi" />
+    <lightning:conversationToolkitAPI aura:id="conversationKit" />
+    <aura:handler event="lightning:conversationNewMessage" action="{!c.onNewMessage}" />
+    <aura:handler event="lightning:conversationChatEnded" action="{!c.onChatEnded}" />
+    
+    <!-- Code -->
+    <lightning:card class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <h2 class="einstein-logo-hdr slds-text-heading_small" style="width:100%">
+                <span class="einstein-logo">
+                    <div class="einstein-header-wrapper runtime_sales_insightsEinsteinHeader">
+                        <span class="einstein-label">
+                            Salesforce Chat 
+                            <p> <div style="font-size:0.8rem">Powered by Einstein Language</div></p>
+                        </span>
+                        <span class="uiImage">
+                            <img class="einstein-header-icon" src="/resource/einstein_images/einstein_header_icon.svg"></img>
+                        </span>
+                    </div>
+                </span>
+            </h2>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <ui:scrollerWrapper aura:id="chatScrollerId">
+                <div class="slds-card slds-card_boundary">
+                    <div style = "{! 'height:' + (v.component_height)}">                        
+                        <section role="log" class="slds-chat">
+                            <ul class="slds-chat-list">
+                                <div class="slds-chat-bookend">
+                                    <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
+                                        <lightning:icon iconName="utility:chat" size="x-small"></lightning:icon>
+                                    </span>
+                                    <p>Chat started by
+                                        <b>Lauren Bailey</b> • 4:59 PM</p>
+                                </div>
+                                <aura:iteration items="{!v.caseEvents}" var="caseEvent">
+                                    <aura:if isTrue="{!caseEvent.Type__c == 'Speech'}">
+                                        <!-- CUSTOMER -->
+                                        <aura:if isTrue="{!caseEvent.Spoken_By__c != 'Agent'}">
+                                            <li class="slds-chat-listitem slds-chat-listitem_inbound">
+                                                <div class="slds-chat-message">
+                                                    <div class="slds-chat-message__body">
+                                                        <div class="slds-chat-message__text slds-chat-message__text_inbound">
+                                                            <span>{!caseEvent.Transcript__c}</span>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </aura:if>
+                                        <!-- AGENT -->
+                                        <aura:if isTrue="{!caseEvent.Spoken_By__c == 'Agent'}">
+                                            <li class="slds-chat-listitem slds-chat-listitem_outbound">
+                                                <div class="slds-chat-message">                                                        
+                                                    <div class="slds-chat-message__body">
+                                                        <a href="{!caseEvent.URL__c}">
+                                                            <div class="slds-chat-message__text slds-chat-message__text_outbound">
+                                                                <span>{!caseEvent.Transcript__c}</span>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </aura:if>
+                                        <aura:if isTrue="{!caseEvent.Translation__c != null}">
+                                            <!-- CUSTOMER -->
+                                            <aura:if isTrue="{!caseEvent.Spoken_By__c != 'Agent'}">
+                                                <li class="slds-chat-listitem slds-chat-listitem_inbound">
+                                                    <div class="slds-chat-message">
+                                                        <div class="slds-chat-message__body">
+                                                            <div class="slds-chat-message__text slds-chat-message__text_inbound" style="background:#B2C1D0">
+                                                                <span>{!caseEvent.Translation__c}</span>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="slds-chat-listitem slds-chat-listitem_inbound">
+                                                    <div class="slds-chat-message__meta" aria-label="said Customer">Lauren Bailey • <lightning:formattedDateTime value="{!caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" timeZoneName="short" hour12="true"/></div>
+                                                </li>
+                                            </aura:if>
+                                            <!-- AGENT -->
+                                            <aura:if isTrue="{!caseEvent.Spoken_By__c == 'Agent'}">
+                                                <li class="slds-chat-listitem slds-chat-listitem_outbound">
+                                                    <div class="slds-chat-message">                                                      
+                                                        <div class="slds-chat-message__body">
+                                                            <a href="{!caseEvent.URL__c}">
+                                                                <div class="slds-chat-message__text slds-chat-message__text_outbound" style="background:#B2C1D0">
+                                                                    <span>{!caseEvent.Translation__c}</span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="slds-chat-listitem slds-chat-listitem_outbound">
+                                                    <div class="slds-chat-message__meta" aria-label="said Tim Service">Tim Service •
+                                                        <lightning:formattedDateTime 
+                                                                                     value="{!caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true"/></div>
+                                                </li>
+                                                
+                                            </aura:if>                            
+                                        </aura:if>
+                                        <aura:if isTrue="{!caseEvent.Intent__c != null}">
+                                            <li class="slds-chat-listitem slds-chat-listitem_event">
+                                                <div class="slds-chat-event">
+                                                    <div class="slds-chat-event__rule"></div>
+                                                    <div class="slds-chat-event__body">
+                                                        <span class="slds-icon_container slds-icon-utility-einstein slds-chat-icon">
+                                                            <lightning:icon iconName="utility:einstein" size="small" alternativeText='Breakpoint'/>
+                                                        </span>
+                                                        <p>
+                                                            Customer Intent Detected <b>{!caseEvent.Intent__c} • <lightning:formattedDateTime value="{!caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true" ></lightning:formattedDateTime></b></p>
+                                                    </div>
+                                                    <div class="slds-chat-event__rule"></div>
+                                                </div>
+                                            </li>
+                                        </aura:if>
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!caseEvent.Type__c == 'Event'}">
+                                        <li class="slds-chat-listitem slds-chat-listitem_event">
+                                            <div class="slds-chat-event">
+                                                <div class="slds-chat-event__rule"></div>
+                                                <div class="slds-chat-event__body">
+                                                    <span class="slds-icon_container slds-icon-utility-einstein slds-chat-icon">
+                                                        <lightning:icon iconName="utility:einstein" size="small" alternativeText='Breakpoint'/>
+                                                    </span>
+                                                    <p>
+                                                        <b>{!caseEvent.Transcript__c} • <lightning:formattedDateTime value="{!caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true" ></lightning:formattedDateTime></b></p>
+                                                </div>
+                                                <div class="slds-chat-event__rule"></div>
+                                            </div>
+                                        </li>
+                                    </aura:if>
+                                    <aura:if isTrue="{!caseEvent.Type__c == 'End Chat'}">
+                                        <li class="slds-chat-listitem slds-chat-listitem_event">
+                                            <div class="slds-chat-bookend slds-chat-bookend_stop">
+                                                <span class="slds-icon_container slds-icon-utility-end_chat slds-chat-icon">
+                                                    <lightning:icon iconName="utility:end_chat" size="x-small"></lightning:icon>
+                                                </span>
+                                                <p>Chat session ended by
+                                                    <b>{!caseEvent.Transcript__c}</b> • <lightning:formattedDateTime value="{!caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true"/>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </aura:if> 
+                                </aura:iteration>                   
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </ui:scrollerWrapper>
+            
+            <div class="toolbar runtime_service_liveagentBaseToolbar">
+                <div class="slds-button-group">
+                    <div class="slds-button-group">                                                                                                                          
+                        <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                            <lightning:icon iconName="utility:share_file" size="xx-small" />
+                            <span class="slds-assistive-text">Request a File</span>
+                        </button>
+                    </div>                    
+                    <div class="slds-button-group">
+                        <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                            <lightning:icon iconName="utility:change_owner" size="xx-small" />
+                            <span class="slds-assistive-text">Transfer</span>
+                        </button>
+                        <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                            <lightning:icon iconName="utility:people" size="xx-small" />
+                            <span class="slds-assistive-text">Conference</span>
+                        </button>
+                        <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                            <lightning:icon iconName="utility:block_visitor" size="xx-small" />
+                            <span class="slds-assistive-text">Block this person from Chat</span>
+                        </button>
+                        <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                            <lightning:icon iconName="utility:priority" size="xx-small" />
+                            <span class="slds-assistive-text">Request assistance for this chat</span>
+                        </button>                        
+                    </div>                    
+                </div>
+                <div class="slds-button-group">
+                    <button class="slds-button slds-button_icon  slds-button_icon-border-filled" type="button" title="Request a File">
+                        <lightning:icon iconName="utility:quick_text" size="xx-small" />
+                        <span class="slds-assistive-text">"Insert quick text</span>
+                    </button>           
+                </div>
+                <div class="toolbarMiddle" data-aura-rendered-by="6367:0"></div>
+                <ui:button aura:id="endChatButton" label="End Chat" press="{!c.endChat}" class="slds-button slds-button_destructive"/>        
+            </div>
+            <div onkeypress="{!c.onTextAreaChange}" style="padding-top:0px">
+                <lightning:textarea aura:id="chatTextArea" rows="4" name="chat_box_name" placeholder="Type a message..." value="{!v.chat_box_value}" />
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

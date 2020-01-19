@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Article</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Email Article</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>if (typeof(srcUp) == &#39;function&#39;) {
+srcUp(&#39;/email/author/emailauthor.jsp?isdtp=vw&amp;retURL=%2F{!Case.Id}&amp;p3_lkid={!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;template_id=00XB0000000OakZ&amp;new_template=true&#39;);
+ } else {
+location.replace(&#39;/email/author/emailauthor.jsp?retURL=%2F{!Case.Id}&amp;p3_lkid={!Case.Id}&amp;rtype=003&amp;p2_lkid={!Case.ContactId}&amp;template_id=00XB0000000OakZ&amp;new_template=true&#39;);
+}</url>
+</WebLink>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UpSellCrossSellOpp</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>true</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>true</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Up-Sell/Cross-Sell Opp</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>true</showsLocation>
+    <showsStatus>true</showsStatus>
+    <url>https://na1.salesforce.com/006/e?retURL=%2Fhome%2Fhome.jsp%3Ftsid%3D02uB0000000OnxG&amp;RecordType=012B0000000Qzq1&amp;rt=Opportunity&amp;cancelURL=%2Fhome%2Fhome.jsp%3Ftsid%3D02uB0000000OnxG?accid={!Account_ID}&amp;opp3=Service+Renewal&amp;opp6=Customer+Support&amp;opp7=0&amp;opp9={!Today}</url>
+    <width>800</width>
+</WebLink>

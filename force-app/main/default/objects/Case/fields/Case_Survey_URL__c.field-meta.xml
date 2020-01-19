@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Case_Survey_URL__c</fullName>
+    <externalId>false</externalId>
+    <formula>LEFT($Api.Enterprise_Server_URL_320, FIND( &quot;/services&quot;, $Api.Enterprise_Server_URL_320) -1) + &#39;/apex/DE_CustomerSurvey&#39;</formula>
+    <label>Case Survey URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

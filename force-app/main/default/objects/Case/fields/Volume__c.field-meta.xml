@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Volume__c</fullName>
+    <description>This field is used by the &quot;Channel History&quot; dashboard on the Service Executive dashboard.  It&#39;s a hidden field on the case that represents the number of cases for that time period.  This is because there are not enough cases in the SDO to make a compelling historical dashboard.  It is manually updated, and tied to no workflow rules.</description>
+    <externalId>false</externalId>
+    <label>Volume</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

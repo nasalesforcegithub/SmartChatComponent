@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Indicator__c</fullName>
+    <externalId>false</externalId>
+    <formula>IMAGE(URLsrc__c&amp;&quot;/servlet/servlet.ImageServer?id=&quot;&amp;CASE( Status, 
+&quot;New&quot;, &quot;015B0000000oJDO&amp;oid=00DB0000000MTki&quot;, 
+&quot;Working&quot;,&quot;015B0000000oJDP&amp;oid=00DB0000000MTki&quot;,
+&quot;Waiting on customer&quot;, &quot;015B0000000oJDQ&amp;oid=00DB0000000MTki&quot;,
+&quot;Response Received&quot;,&quot;015B0000000oJDR&amp;oid=00DB0000000MTki&quot;,
+&quot;Escalated&quot;, &quot;015B0000000oJDS&amp;oid=00DB0000000MTki&quot;, 
+&quot;Warning&quot;,&quot;015B0000000oJDT&amp;oid=00DB0000000MTki&quot;,
+&quot;Violation&quot;,&quot;015B0000000oJDU&amp;oid=00DB0000000MTki&quot;,
+&quot;Closed in Portal&quot;, &quot;015B0000000oJDV&amp;oid=00DB0000000MTki&quot;,
+&quot;Closed&quot;,&quot;015B0000000oJDV&amp;oid=00DB0000000MTki&quot;,
+&quot;Closed - First Call&quot;, &quot;015B0000000oJDV&amp;oid=00DB0000000MTki&quot;,
+&quot;Submitting Feature&quot;,&quot;015B0000000oJDS&amp;oid=00DB0000000MTki&quot;,
+&quot;015B0000000oJDO&amp;oid=00DB0000000MTki&quot;),&quot;Status&quot;,24,24)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Indicator</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

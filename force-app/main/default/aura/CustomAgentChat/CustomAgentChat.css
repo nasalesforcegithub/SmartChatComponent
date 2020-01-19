@@ -1,0 +1,90 @@
+.THIS.scrollerSize {
+    height: 350px;
+    max-height: 350px;
+}
+.THIS.slds-card_boundary {
+    height: 350px;
+    max-height: 350px;
+}
+.THIS.slds-button slds-button_destructive {
+    padding: 8px;
+ 	margin-top: 20px;
+ 	border-radius: 4px;
+}
+.THIS.slds-form-element__control {
+    padding-top:0px;
+}
+
+.THIS .slds-form-element__label {
+      display : none;
+      visibility : hidden;
+}
+.THIS .slds-textarea {
+    height:100px !important;
+}
+
+.THIS.runtime_service_liveagentBaseToolbar.toolbar {
+    display: flex;
+    flex-direction: row;
+    background: var(--lwc-colorBackground,rgb(243, 242, 242));
+    padding: var(--lwc-spacingXxSmall,0.25rem);
+    border-top: var(--lwc-borderWidthThin,1px) solid var(--lwc-colorBorder,rgb(221, 219, 218));
+    border-left: var(--lwc-borderWidthThin,1px) solid var(--lwc-colorBorder,rgb(221, 219, 218));
+    border-right: var(--lwc-borderWidthThin,1px) solid var(--lwc-colorBorder,rgb(221, 219, 218));
+}
+.THIS.slds-button-group .slds-button-group-list {
+    display: inline-flex;
+}
+.THIS.runtime_service_liveagentBaseToolbar .toolbarMiddle {
+    flex-grow: 1;
+}
+                                    
+.THIS.runtime_sales_insightsInsightsContainer {
+    border: none;
+    padding-bottom: 2px;
+}
+
+.THIS.runtime_sales_insightsInsightsContainer.SFX_HOME .slds-card__header {
+    padding: 0;
+}
+
+.THIS.runtime_sales_insightsInsightsContainer h2.einstein-logo-hdr {
+    display: inline;
+    width: 100%;
+}
+
+.THIS .runtime_sales_insightsEinsteinHeader.einstein-header-wrapper {
+    background-image: url(/resource/einstein_images/einstein_header_background.svg);
+    background-repeat: repeat-x;
+    background-size: auto 81px;
+    border-radius: .25rem .25rem 0 0;
+    border-color: rgb(221, 219, 218);
+    height: 81px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    position: relative;
+}
+
+.THIS .runtime_sales_insightsEinsteinHeader .einstein-label {
+    padding-left: .75rem;
+    background: transparent;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: rgb(22, 50, 92);
+}
+                                    
+.THIS .runtime_sales_insightsEinsteinHeader .uiImage {
+    padding: .95rem .75rem 0 0;
+    margin-left: auto;
+}
+
+.THIS .predictive-header {
+    font-size: 14px;
+}

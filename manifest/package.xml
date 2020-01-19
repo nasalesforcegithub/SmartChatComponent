@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>ChatInterceptCtrl</members>
+		<members>JWT</members>
+		<members>JWTBearerFlow</members>
+		<members>Language</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>ApexTrigger</name>
+	</types>
+	<types>
+		<members>CustomAgentChat</members>
+		<name>AuraDefinitionBundle</name>
+	</types>
+	<types>
+		<members>Case</members>
+		<members>Chat_Event__c</members>
+		<members>Contract</members>
+		<members>LiveChatTranscript</members>
+		<name>CustomObject</name>
+	</types>
+	<version>47.0</version>
+</Package>
