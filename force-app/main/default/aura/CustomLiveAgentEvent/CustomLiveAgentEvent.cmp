@@ -43,7 +43,11 @@
                     </div>
                 </li>
                 <li class="slds-chat-listitem slds-chat-listitem_inbound">
-                    <div class="slds-chat-message__meta" aria-label="said Customer">Lauren Bailey • <lightning:formattedDateTime value="{!v.caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" timeZoneName="short" hour12="true"/></div>
+                    <div class="slds-chat-message__meta" aria-label="said Customer">
+                        Lauren Bailey • <lightning:formattedDateTime value="{!v.caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true"/>
+                        <aura:if isTrue="{!v.caseEvent.Sentiment__c != null || v.caseEvent.Sentiment__c == 'neutral'}">&nbsp;&nbsp;{!if(v.caseEvent.Sentiment__c == 'positive', '&#10004;', '&#10006;')}</aura:if>
+                        <aura:if isTrue="{!v.caseEvent.Aggregated_Sentiment__c != null}">&nbsp;{!v.caseEvent.Aggregated_Sentiment__c}</aura:if>
+                    </div>
                 </li>
             </aura:if>
             <!-- AGENT -->
