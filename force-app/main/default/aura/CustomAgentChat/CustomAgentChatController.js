@@ -1,6 +1,17 @@
 ({
     doInit: function(cmp, evt, helper) {
-        //helper.sendLiveAgentMessage(cmp, evt, 'Welcome to Salesforce Chat. This conversation is being translated by Salesforce Einstein');
+        var recordId = cmp.get('v.recordId');
+        var action = cmp.get('c.getPastChatEvents');
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log('Handling response from event');
+            console.log(response.getReturnValue());
+            cmp.set('v.caseEvents', response.getReturnValue());
+        });
+        action.setParams({
+            chatId : recordId
+        });
+        $A.enqueueAction(action);
     },
     onTextAreaChange:function(cmp,evt,helper) {
         if(evt.which == 13) {

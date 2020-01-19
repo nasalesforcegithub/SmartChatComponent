@@ -22,7 +22,12 @@ public class ChatInterceptCtrl {
         
         return chatEvent;
     }
-    
+
+    @AuraEnabled
+    public static List<Chat_Event__c> getPastChatEvents(String chatId){
+        System.debug('Chat Id is ' + voiceCallId);
+        return [SELECT Name, Event_Time__c , Type__c, Transcript__c, Spoken_By__c, Translation__c, Intent__c, Aggregated_Sentiment__c, Sentiment__c FROM Chat_Event__c WHERE Chat_Transcript__c  =: chatId ORDER BY Event_Time__c ASC];
+    }    
     
     @AuraEnabled
     public static String getChatTranslation(String chatString, String toLanguage, String spokenBy){
