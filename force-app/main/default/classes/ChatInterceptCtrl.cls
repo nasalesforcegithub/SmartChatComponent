@@ -3,6 +3,7 @@ public class ChatInterceptCtrl {
     @AuraEnabled
     public static Chat_Event__c analyseChatString(String chatString, String toLanguage, String chatId, String spokenBy, String intentModel, Integer currentSentiment, Integer currentPosition){
         //Comment from Neil
+        //Second Comment from Neil
         String translation = chatString;
         if (toLanguage != null){
             translation = getChatTranslation(chatString, toLanguage, spokenBy);            
