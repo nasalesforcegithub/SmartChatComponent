@@ -1,45 +1,15 @@
 ({
-    /*
-    addToComponentChat: function(cmp, evt, timestamp, transcript,translation, spokenby) {
-        var caseEventsArray = cmp.get("v.caseEvents");            
-        caseEventsArray.push({
-            Event_Time__c: timestamp,
-            Type__c: 'Speech',
-            Transcript__c: transcript,
-            Spoken_By__c: spokenby,
-            id: '',
-            Name: 'name'
-        });
-        caseEventsArray.push({
-            Event_Time__c: timestamp,
-            Type__c: 'Translation',
-            Transcript__c: translation,
-            Spoken_By__c: spokenby,
-            id: '',
-            Name: 'name'
-        });
-        console.log(caseEventsArray);
-        cmp.set("v.caseEvents", caseEventsArray); 
-        //var scrollVar = cmp.find("scrollerId");                
-        //scrollVar.scrollto("bottom");
+    intentMasking: function(cmp, evt, chatEvents) {
+        for(var i = 0; i < chatEvents.length; i++) {
+            if(chatEvents[i]["Chat_Event_Entities__r"]) {
+                for(var j = 0; j < chatEvents[i].Chat_Event_Entities__r.length; j++) {
+                    var re = new RegExp(chatEvents[i].Chat_Event_Entities__r[j].Value__c, 'g');
+                    chatEvents[i].Transcript__c = chatEvents[i].Transcript__c.replace(re, '<u><b>'+chatEvents[i].Chat_Event_Entities__r[j].Value__c+'</b></u>');
+                }
+            }
+        }
+        return chatEvents;
     },
-    */
-    /*
-    addEventToChat: function(cmp, evt, timestamp, transcript) {
-        var caseEventsArray = cmp.get("v.caseEvents");      
-        caseEventsArray.push({
-            Event_Time__c: timestamp,
-            Type__c: 'Event',
-            Transcript__c: transcript,
-            id: '',
-            Name: 'name'
-        });
-        console.log(caseEventsArray);
-        cmp.set("v.caseEvents", caseEventsArray); 
-        //var scrollVar = cmp.find("scrollerId");                
-        //scrollVar.scrollto("bottom");
-    }, 
-    */
     sendLiveAgentMessage: function(cmp, evt, msg) {
         console.log('About to Send Message');
         var conversationKit = cmp.find("conversationKit");

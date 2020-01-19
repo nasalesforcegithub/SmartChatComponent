@@ -6,7 +6,9 @@
             var state = response.getState();
             console.log('Handling response from event');
             console.log(response.getReturnValue());
-            cmp.set('v.caseEvents', response.getReturnValue());
+            // apply mask for intent entities
+            var chatEvents = helper.intentMasking(cmp, evt, response.getReturnValue());
+            cmp.set('v.caseEvents', chatEvents);
         });
         action.setParams({
             chatId : recordId

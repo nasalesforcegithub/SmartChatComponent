@@ -7,7 +7,7 @@
                 <div class="slds-chat-message">
                     <div class="slds-chat-message__body">
                         <div class="slds-chat-message__text slds-chat-message__text_inbound">
-                            <span>{!v.caseEvent.Transcript__c}</span>
+                            <span><aura:unescapedHtml value="{!v.caseEvent.Transcript__c}"/></span>
                         </div>
                         
                     </div>
