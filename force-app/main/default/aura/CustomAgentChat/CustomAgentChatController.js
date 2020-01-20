@@ -44,8 +44,9 @@
         helper.analyseText(cmp, content, helper, agent_language, 'Customer',  function(res){
             console.log('Starting Text Analysis');
             var chatEvent = res.getReturnValue();
+            chatEvent = helper.intentMasking(cmp, evt, [chatEvent]);
             var caseEventsArray = cmp.get("v.caseEvents");
-            caseEventsArray.push(chatEvent);
+            caseEventsArray.push(chatEvent[0]);
             cmp.set("v.caseEvents", caseEventsArray);
             cmp.set("v.aggregated_sentiment", chatEvent.Aggregated_Sentiment__c);
             console.log(chatEvent);

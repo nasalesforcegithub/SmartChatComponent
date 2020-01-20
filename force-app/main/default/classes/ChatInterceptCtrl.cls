@@ -20,6 +20,7 @@ public class ChatInterceptCtrl {
         if (spokenBy == 'Customer'){
             prediction = getChatNER(chatString, spokenBy);
         }
+        currentSentiment = (currentSentiment == null ? 0 : currentSentiment);
         Chat_Event__c chatEvent = insertChatEvent(chatId, chatString, spokenBy, translation, intent, sentiment, currentSentiment, currentPosition);
         
         List<Chat_Event_Entity__c> entities = insertChatEventEntities(chatEvent.Id, prediction);
@@ -91,11 +92,7 @@ public class ChatInterceptCtrl {
         String resultString = '';
         String modelId = 'NER7'; 
         einsteinplay.Einstein_PredictionService service = new einsteinplay.Einstein_PredictionService(einsteinplay.Einstein_PredictionService.Types.NER); 
-        einsteinplay.Einstein_PredictionResult prediction = service.predictNER(modelId,chatString,3,'');         
-        system.debug('-- result --- ' + prediction);
-        system.debug('-- result --- ' + prediction.probabilities[0].label);
-        system.debug('-- result --- ' + prediction.probabilities[0].token);
-        system.debug('-- result --- ' + prediction.probabilities[0].probability);
+        einsteinplay.Einstein_PredictionResult prediction = service.predictNER(modelId,chatString,3,'');
         return prediction; 
     }
     
@@ -114,6 +111,7 @@ public class ChatInterceptCtrl {
         
         //Calculate Sentiment
         chatEvent.Sentiment__c = chatSentiment;
+        
         if (spokenBy == 'Customer'){
             if (chatSentiment == 'Positive'){
                 chatEvent.Aggregated_Sentiment__c = currentSentiment + 1;
