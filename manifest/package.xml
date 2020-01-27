@@ -13,7 +13,7 @@
 	</types>
 	<types>
 		<members>CustomAgentChat</members>
-        <members>CustomLiveAgentChatBubble</members>
+        <members>CustomLiveAgentEvent</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
