@@ -115,8 +115,8 @@
                 <div class="slds-chat-event">
                     <div class="slds-chat-event__rule"></div>
                     <div class="slds-chat-event__body">
-                        <span class="slds-icon_container slds-icon-utility-einstein slds-chat-icon">
-                            <lightning:icon iconName="utility:einstein" size="small" alternativeText='Breakpoint'/>
+                        <span class="slds-icon_container slds-icon-utility-comments slds-chat-icon">
+                            <lightning:icon iconName="utility:comments" size="small" alternativeText='Breakpoint'/>
                         </span>
                         <p>
                             Customer Intent Detected <b>{!v.caseEvent.Intent__c} • <lightning:formattedDateTime value="{!v.caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true" ></lightning:formattedDateTime></b></p>
