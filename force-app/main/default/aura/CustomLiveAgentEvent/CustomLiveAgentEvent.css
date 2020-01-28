@@ -1,2 +1,11 @@
-.THIS {
+/* Add this to your CSS */
+.THIS .tooltip-red {
+  balloon-color: red}
+
+.THIS .tooltip-big-text {
+  balloon-font-size: 20px;
+}
+
+.THIS .tooltip-slide {
+  balloon-move: 30px;
 }
