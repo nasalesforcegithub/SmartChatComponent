@@ -2,14 +2,7 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
 		<members>ChatInterceptCtrl</members>
-		<members>JWT</members>
-		<members>JWTBearerFlow</members>
-		<members>Language</members>
 		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>*</members>
-		<name>ApexTrigger</name>
 	</types>
 	<types>
 		<members>CustomAgentChat</members>

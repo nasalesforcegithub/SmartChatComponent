@@ -155,8 +155,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Chat Event Entity</label>
     <nameField>
+        <displayFormat>CEE-{00000000}</displayFormat>
         <label>Chat Event Entity Name</label>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Chat Event Entities</pluralLabel>
     <searchLayouts/>
