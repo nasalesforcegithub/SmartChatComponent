@@ -55,10 +55,10 @@
                             <!--<button aria-label="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#10004; •', 'Sentiment: &#10006; •') + ' Score: ' + v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">Hover me!</button>-->
                             <!--<button aria-label="{!v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">Hover me!</button>--> 
                         <!--</aura:if>-->
-                        
+
                         <aura:if isTrue="{!and((v.caseEvent.Sentiment__c != null || v.caseEvent.Sentiment__c == 'neutral'),v.caseEvent.Aggregated_Sentiment__c != null)}">
-                            &nbsp;&nbsp;
-                            <button class="slds-button" title="Insights" aria-label="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#10004; • ', 'Sentiment: &#10006; • ') +'Score: ' + v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">
+                            &nbsp;
+                            <button class="slds-button" title="Insights" aria-label="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#128522;', 'Sentiment: &#128577;') +' Aggregate: ' + v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">
                             <lightning:icon iconName="utility:einstein" size="x-small" alternativeText="Insights"></lightning:icon>
                             </button>
                         </aura:if>

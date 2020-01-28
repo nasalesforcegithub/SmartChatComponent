@@ -145,9 +145,9 @@ public class ChatInterceptCtrl {
         chatEvent.Sentiment__c = chatSentiment;
         
         if (spokenBy == 'Customer'){
-            if (chatSentiment == 'Positive'){
+            if (chatSentiment == 'positive'){
                 chatEvent.Aggregated_Sentiment__c = currentSentiment + 1;
-            } else if (chatSentiment == 'Negative'){
+            } else if (chatSentiment == 'negative'){
                 chatEvent.Aggregated_Sentiment__c = currentSentiment -1;
             } else {
                 chatEvent.Aggregated_Sentiment__c = currentSentiment;
