@@ -18,45 +18,64 @@
     <aura:attribute name="negative_sentiment_level" type="Integer" default="-3" />    
     <aura:attribute name="einstein_NER" type="String" default="Yes"/>
     <aura:attribute name="component_height" type="String" default="500px"/>
-    
+
+    <!-- french connection -->
+    <aura:attribute name="contactName" type="String" />
+    <aura:attribute name="agentUserId" type="String" />
+    <aura:attribute name="agentName" type="String" />
+    <aura:attribute name="currentDateTime" type="Datetime" />
+
+    <!-- Get Attribute for User Object-->
+    <aura:attribute name="userFields" type="String[]" access="global" default="Id,FirstName,LastName"/>
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="fields" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>
+    <aura:if isTrue="{!v.agentUserId}">
+        <force:recordData aura:id="recordHandler" recordId="{!v.agentUserId}" fields="{!v.userFields}" targetRecord="{!v.record}" targetError="{!v.recordError}" targetFields="{!v.fields}" mode="EDIT"/>
+    </aura:if>
+
     <!-- Events -->
     <lightning:empApi aura:id="empApi" />
     <lightning:conversationToolkitAPI aura:id="conversationKit" />
     <aura:handler event="lightning:conversationNewMessage" action="{!c.onNewMessage}" />
     <aura:handler event="lightning:conversationChatEnded" action="{!c.onChatEnded}" />
+    <aura:handler event="c:AutoSendMessage" action="{!c.autoSendAgentMessage}"/>
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
     
     <!-- Code -->
     <lightning:card class="slds-card">
-        <div class="slds-card__header slds-grid">
-            <h2 class="einstein-logo-hdr slds-text-heading_small" style="width:100%">
-                <span class="einstein-logo">
-                    <div class="einstein-header-wrapper runtime_sales_insightsEinsteinHeader">
-                        <span class="einstein-label">
+
+        <!-- french connection -->
+        <div class="slds-grid slds-einstein-header slds-card__header">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-grid slds-grid_vertical-align-center slds-size_3-of-4 slds-medium-size_2-of-3">
+                    <div class="slds-media__body">
+                        <h2 class="title slds-text-heading_medium slds-p-left_x-large">
                             Salesforce Chat 
-                            <p> <div style="font-size:0.8rem">Powered by Einstein Language</div></p>
-                        </span>
-                        <span class="uiImage">
-                            <img class="einstein-header-icon" src="/resource/einstein_images/einstein_header_icon.svg"></img>
-                        </span>
+                            <p> <div style="font-size:0.8rem">Powered by Einstein Translation</div></p>
+                        </h2>
                     </div>
-                </span>
-            </h2>
+                </div>
+                <div class="slds-einstein-header__figure slds-size_1-of-4 slds-medium-size_1-of-3"></div>
+            </header>
         </div>
+
         <div class="slds-card__body slds-card__body_inner">
             <ui:scrollerWrapper aura:id="chatScrollerId">
                 <div class="slds-card slds-card_boundary">
-                    <div style = "{! 'height:' + (v.component_height)}">                        
+                    <div style="{!'height:' + (v.component_height)}">                        
                         <section role="log" class="slds-chat">
                             <ul class="slds-chat-list">
                                 <div class="slds-chat-bookend">
                                     <span class="slds-icon_container slds-icon-utility-chat slds-chat-icon">
                                         <lightning:icon iconName="utility:chat" size="x-small"></lightning:icon>
                                     </span>
-                                    <p>Chat started by
-                                        <b>Lauren Bailey</b> • 4:59 PM</p>
+                                    <p>Chat started by&nbsp;
+                                        <b>{!v.contactName}</b> • <lightning:formattedDateTime value="{!v.currentDateTime}" hour="2-digit" minute="2-digit" hour12="false"/>
+                                    </p>
                                 </div>
                                 <aura:iteration items="{!v.caseEvents}" var="caseEvent">
-                                    <c:CustomLiveAgentEvent caseEvent="{!caseEvent}"/>
+                                    <c:CustomLiveAgentEvent caseEvent="{!caseEvent}" contactName="{!v.contactName}" userAgentName="{!v.fields.FirstName + ' ' + v.fields.LastName}"/>
                                 </aura:iteration>                   
                             </ul>
                         </section>

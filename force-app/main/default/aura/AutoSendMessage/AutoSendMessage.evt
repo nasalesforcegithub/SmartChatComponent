@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="To allow sending and translating message for chat" >
+    <aura:attribute name="Message" type="String"/>
+    <aura:attribute name="TranslationLanguage" type="String"/>
+</aura:event>

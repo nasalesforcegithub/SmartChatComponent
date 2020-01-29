@@ -5,14 +5,15 @@
 		<name>ApexClass</name>
 	</types>
 	<types>
+		<members>AutoSendMessage</members>
 		<members>CustomAgentChat</members>
-        <members>CustomLiveAgentEvent</members>
+		<members>CustomLiveAgentEvent</members>
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
 		<members>Case</members>
+		<members>Chat_Event_Entity__c</members>
 		<members>Chat_Event__c</members>
-        <members>Chat_Event_Entity__c</members>
 		<members>Contract</members>
 		<members>LiveChatTranscript</members>
 		<name>CustomObject</name>

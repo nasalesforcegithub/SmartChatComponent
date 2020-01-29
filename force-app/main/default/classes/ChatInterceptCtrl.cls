@@ -61,20 +61,6 @@ public class ChatInterceptCtrl {
         return resultString;
     }
 
-/*
-    @AuraEnabled
-    public static String getChatIntent(String chatString, String intentModel, String spokenBy) {
-        String resultString;
-        if (intentModel != ''){
-            List<Language.Prediction> intentList = Language.intent(chatString, language.getAccessToken(), intentModel);
-            if (intentList.size()>0 && intentList[0].probability > 0.9){
-                resultString = intentList[0].label;
-            }
-        }
-        return resultString;
-    }
-*/
-
     // Intent v2
     @AuraEnabled
     public static String getChatIntent(String chatString, String intentModel, String spokenBy) {
@@ -89,18 +75,6 @@ public class ChatInterceptCtrl {
         }    
         return resultString;
     }
-
-/*
-    @AuraEnabled
-    public static String getChatSentiment(String chatString, String spokenBy) {
-        String resultString = '';
-        List<Language.Prediction> sentimentList = Language.sentiment(chatString, language.getAccessToken(), 'CommunitySentiment');
-        if (sentimentList.size()>0){
-            resultString = sentimentList[0].label;
-        }
-        return resultString;
-    }
-*/
 
     // Sentiment v2
     @AuraEnabled
@@ -176,8 +150,13 @@ public class ChatInterceptCtrl {
         }
         return entityList;
     }
-    
-    
+
+    @AuraEnabled
+    public static String getContactName(String liveChatTranscriptId){
+        LiveChatTranscript lct = [SElECT Id, ContactId, Contact.FirstName, Contact.LastName FROM LiveChatTranscript WHERE Id = :liveChatTranscriptId];
+        return lct.Contact.FirstName + ' ' + lct.Contact.LastName;
+    }
+
     @AuraEnabled
     public static list<Chat_Event__c> fetchChatEventList(String chatId){
         return [SELECT Name, Event_Time__c , Type__c, Transcript__c, Spoken_By__c, URL__c FROM Chat_Event__c WHERE Chat_Transcript__c =: chatId ORDER BY Event_Time__c ASC];

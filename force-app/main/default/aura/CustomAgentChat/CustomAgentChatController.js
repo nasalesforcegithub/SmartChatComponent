@@ -1,5 +1,14 @@
 ({
     doInit: function(cmp, evt, helper) {
+
+        // french connection START
+        var currentDateTime = Date.now();
+        cmp.set('v.currentDateTime', currentDateTime);
+        helper.getContactName(cmp, evt);
+        var userId = $A.get("$SObjectType.CurrentUser.Id");
+        cmp.set("v.agentUserId", userId);
+        // french connection END
+
         var recordId = cmp.get('v.recordId');
         var action = cmp.get('c.getPastChatEvents');
         action.setCallback(this, function(response) {
@@ -58,5 +67,27 @@
     },
     onChatEnded: function(cmp, evt, helper) {
         helper.endChatCustomer(cmp,evt);        
+    },
+
+    // french connection START
+    autoSendAgentMessage: function(cmp, evt, helper){
+        var agent_msg = evt.getParam("Message");
+        var customer_language = cmp.get('v.customer_language');
+        console.log('something', agent_msg);
+        
+        helper.translateText(cmp, agent_msg, helper, customer_language, function(res) {
+            var translatedText = res.getReturnValue();
+            console.log('Posting translatedText = ' + translatedText);
+            helper.addToComponentChat(cmp, evt, Date.now(),agent_msg, translatedText,'Agent');
+            console.log('Sending message = ' + translatedText);
+            helper.sendLiveAgentMessage(cmp, evt, translatedText);
+            console.log('Send Message');
+        });
+    }, 
+    onRender: function(cmp, evt, helper) {
+        console.log("***************** rerender 2 ******************");
+        var scroller = cmp.find("chatScrollerId");
+        scroller.scrollTo("bottom",0,0);
     }
+    // french connection END
 })

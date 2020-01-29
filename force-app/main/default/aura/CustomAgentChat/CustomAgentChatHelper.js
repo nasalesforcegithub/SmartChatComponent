@@ -1,4 +1,33 @@
 ({
+    // french connection START
+    welcomeMessage: function(cmp, evt) {
+        var agent_msg = 'Hello ' + cmp.get("v.contactName") + ' and Welcome to the chat. I am sorry I am not a French speaker. I am using our automated translation engine';
+        var customer_language = cmp.get('v.customer_language');
+        this.translateText(cmp, agent_msg, this, customer_language, function(res) {
+            var translatedText = res.getReturnValue();
+            console.log('Posting translatedText = ' + translatedText);
+            this.addToComponentChat(cmp, evt, Date.now(),agent_msg, translatedText,'Agent');
+            console.log('Sending message = ' + translatedText);
+            this.sendLiveAgentMessage(cmp, evt, translatedText);
+            console.log('Send Message');
+        });
+    },
+    getContactName: function(cmp, evt) {
+        var recordId = cmp.get("v.recordId");
+        var action = cmp.get('c.getContactName');
+        action.setParams({
+            liveChatTranscriptId: recordId,
+        });
+        action.setCallback(this, function(a) {
+            if (a.getState() === "SUCCESS") {
+                cmp.set("v.contactName", a.getReturnValue());
+                this.welcomeMessage(cmp, evt);
+            }
+        });
+        $A.enqueueAction(action);
+    },
+    // french connection END
+
     intentMasking: function(cmp, evt, chatEvents) {
         for(var i = 0; i < chatEvents.length; i++) {
             if(chatEvents[i]["Chat_Event_Entities__r"]) {

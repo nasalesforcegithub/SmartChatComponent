@@ -1,6 +1,6 @@
 .THIS.scrollerSize {
     height: 350px;
-    max-height: 350px;
+    /* max-height: 350px; */
 }
 .THIS.slds-card_boundary {
     height: 350px;
@@ -87,4 +87,17 @@
 
 .THIS .predictive-header {
     font-size: 14px;
+}
+
+.THIS .einsteinHolder {                                   
+    display: flex;
+    background-image: url(/img/analytics/einsteindatadiscovery/einstein_header_background.svg),url(/sfsites/c/img/analytics/einsteindatadiscovery/einstein_header_background.svg);
+    background-repeat: no-repeat;
+    background-position: right 0 bottom 6px;
+    background-size: cover;
+    align-items: center;
+}
+                                    
+.THIS.customCardClass > header.slds-card__header.slds-grid {
+    padding-top:0px;
 }
