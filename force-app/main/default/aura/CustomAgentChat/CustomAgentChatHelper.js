@@ -33,7 +33,7 @@
             if(chatEvents[i]["Chat_Event_Entities__r"]) {
                 for(var j = 0; j < chatEvents[i].Chat_Event_Entities__r.length; j++) {
                     var re = new RegExp(chatEvents[i].Chat_Event_Entities__r[j].Value__c, 'g');
-                    chatEvents[i].Transcript__c = chatEvents[i].Transcript__c.replace(re, '<u><b>'+chatEvents[i].Chat_Event_Entities__r[j].Value__c+'</b></u>');
+                    chatEvents[i].Translation__c = chatEvents[i].Translation__c.replace(re, '<u><b>'+chatEvents[i].Chat_Event_Entities__r[j].Value__c+'</b></u>');
                 }
             }
         }

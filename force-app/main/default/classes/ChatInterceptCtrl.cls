@@ -21,7 +21,7 @@ public class ChatInterceptCtrl {
         }
         einsteinplay.Einstein_PredictionResult prediction;
         if (spokenBy == 'Customer') {
-            prediction = getChatNER(chatString, spokenBy);
+            prediction = getChatNER(translation, spokenBy);
             system.debug('-- ner prediction -- ' + prediction);
         }
         currentSentiment = (currentSentiment == null ? 0 : currentSentiment);

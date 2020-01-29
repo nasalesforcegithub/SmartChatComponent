@@ -12,7 +12,7 @@
                 <div class="slds-chat-message">
                     <div class="slds-chat-message__body">
                         <div class="slds-chat-message__text slds-chat-message__text_inbound">
-                            <span><aura:unescapedHtml value="{!v.caseEvent.Transcript__c}"/></span>
+                            <span>{!v.caseEvent.Transcript__c}</span>
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                     <div class="slds-chat-message">
                         <div class="slds-chat-message__body">
                             <div class="slds-chat-message__text slds-chat-message__text_inbound" style="background:#B2C1D0">
-                                <span>{!v.caseEvent.Translation__c}</span>
+                                <span><aura:unescapedHtml value="{!v.caseEvent.Translation__c}"/></span>
                             </div>
                             
                         </div>
