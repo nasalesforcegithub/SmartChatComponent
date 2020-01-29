@@ -49,48 +49,13 @@
                 <li class="slds-chat-listitem slds-chat-listitem_inbound">
                     <div class="slds-chat-message__meta" aria-label="said Customer">
                         {!v.contactName} • <lightning:formattedDateTime value="{!v.caseEvent.Event_Time__c}" hour="2-digit" minute="2-digit" hour12="true"/>
-
-                        <!-- Lightning Design System --> 
-                        <!--<aura:if isTrue="{!and((v.caseEvent.Sentiment__c != null || v.caseEvent.Sentiment__c == 'neutral'),v.caseEvent.Aggregated_Sentiment__c != null)}">--> 
-                            <!--<lightning:helptext
-                                            content="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#10004; •', 'Sentiment: &#10006; •') + ' Score: ' + v.caseEvent.Aggregated_Sentiment__c}"
-                                            iconName="utility:salesforce1"
-                                            />-->
-                            <!--<button aria-label="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#10004; •', 'Sentiment: &#10006; •') + ' Score: ' + v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">Hover me!</button>-->
-                            <!--<button aria-label="{!v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">Hover me!</button>--> 
-                        <!--</aura:if>-->
-
                         <aura:if isTrue="{!and((v.caseEvent.Sentiment__c != null || v.caseEvent.Sentiment__c == 'neutral'),v.caseEvent.Aggregated_Sentiment__c != null)}">
                             &nbsp;
                             <button class="slds-button" title="Insights" aria-label="{!if(v.caseEvent.Sentiment__c == 'positive', 'Sentiment: &#128522;', 'Sentiment: &#128577;') +' Aggregate: ' + v.caseEvent.Aggregated_Sentiment__c}" data-balloon-pos="right">
                             <lightning:icon iconName="utility:einstein" size="x-small" alternativeText="Insights"></lightning:icon>
                             </button>
                         </aura:if>
-
-                        <!--<aura:if isTrue="{!v.caseEvent.Sentiment__c != null || v.caseEvent.Sentiment__c == 'neutral'}">&nbsp;&nbsp;{!if(v.caseEvent.Sentiment__c == 'positive', '&#10004;', '&#10006;')}</aura:if>-->
-                        <!--<aura:if isTrue="{!v.caseEvent.Aggregated_Sentiment__c != null}">&nbsp;{!v.caseEvent.Aggregated_Sentiment__c}</aura:if>-->
-                    
                     </div>
-                    <!-- <section aria-describedby="dialog-body-id-102" aria-labelledby="dialog-heading-id-4" class="slds-popover slds-popover_walkthrough slds-popover_feature slds-nubbin_left" role="dialog">
-                        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close slds-button_icon-inverse" title="Close dialog">
-                            <lightning:icon iconName="utility:close" size="small" alternativeText="Close"/>
-                            <span class="slds-assistive-text">Close dialog</span>
-                        </button>
-                        <div class="slds-popover__body" id="dialog-body-id-102">
-                            <div class="slds-media">
-                                <div class="slds-media__figure">
-                                    <span class="slds-icon_container" title="description of icon when needed">
-                                        <lightning:icon iconName="utility:einstein" size="small" alternativeText="Einstein"/>
-                                    <span class="slds-assistive-text">Description of icon</span>
-                                    </span>
-                                </div>
-                                <div class="slds-media__body">
-                                    <h2 id="dialog-heading-id-4" class="slds-text-heading_small">Title</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </section> -->
                 </li>
             </aura:if>
             <!-- AGENT -->
